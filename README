@@ -1,0 +1,10 @@
+DEPS: gsl,lhapdf5
+
+quick steps
+
+1) make 
+3) source setup.sh
+4) $ ./pro  example.card  out
+
+
+

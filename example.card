@@ -1,0 +1,20 @@
+CT10nlo             --pdfcol
+5                   --pQCD
+0                   --jA eigen pdf for hadron A
+0                   --jB eigen pdf for hadron B
+23.3                --rs
+0                   --imode
+1                   --obs
+1                   --ipT
+1.0                 --zR
+1.0                 --zIF
+1.0                 --zFF
+-0.35               --etamin
+0.45                --etamax
+1                   --irap
+0                   --isol
+-1                  --R
+-1                  --EPS_PT
+-1                  --EPS
+4.0   4.25     			--pTmin pTmax
+4.25   4.30     			--pTmin pTmax
