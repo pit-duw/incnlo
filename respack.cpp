@@ -1356,13 +1356,8 @@ int main( int argc, char  *argv[] ){
 	getline(card,line);	iss.str(line);	iss>>params.eps;	
 
 	//--load initial and final states distribution
-	//LHAPDF::setVerbosity(LHAPDF::SILENT);
-	//initPDFSetM(1,pdfcol,LHGRID);
 	INC::pdf1 = LHAPDF::mkPDF(pdfID1);
 	INC::pdf2 = LHAPDF::mkPDF(pdfID2);
-	//initPDFSetM(2,pdfcol,LHGRID);
-	//initPDFM(1,jA);
-	//initPDFM(2,jB);
 	BFG::setup();
 
 	ofstream file;
