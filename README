@@ -1,10 +1,11 @@
-DEPS: gsl,lhapdf5
+DEPS: gsl,lhapdf6
 
 quick steps
 
-1) make 
-3) source setup.sh
-4) $ ./pro  example.card  out
+1) $ make 
+2) modify the paths in setup.sh according to your system 
+3) $ source setup.sh
+4) $ ./pro  ncteq.card  out
 
 
 
