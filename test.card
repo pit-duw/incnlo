@@ -15,5 +15,10 @@
 -1  --R
 -1  --EPS_PT
 -1  --EPS
-4.00    4.25    --pTmin pTmax
-4.25    4.30    --pTmin pTmax
+ 4.0    5.0     --pTmin pTmax 
+14.00	15.00	--pTmin pTmax
+15.50	16.00	--pTmin pTmax
+16.00	16.50	--pTmin pTmax
+16.50	17.00	--pTmin pTmax
+17.00	17.50	--pTmin pTmax
+17.50	18.00	--pTmin pTmax

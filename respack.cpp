@@ -701,18 +701,25 @@ namespace INC{
 	LHAPDF::PDF* pdf2;
 
 	void STRUCI(double X,double Q2,int j,int IH,double * U,double *UB,double *D,double *DB,double *S,double *C,double *B,double *G){
-
+		double XX;
+		if (X>1.0){
+			//std::cout << "Invalid x in method STRUCI: x=" << X << std::endl;
+			//std::cout << "Setting x to 1." << std::endl;
+			XX = X;
+		} else {
+			XX = X;
+		}
 		//--NOTE: ALL DISTRIBUTIONS SHOULD BE X TIMES THE DISTRIBUTION !!!
 		double Q,U0,D0,UB0;
 		Q=pow(Q2,0.5);
 		if (j==1){
-			*G = pdf1->xfxQ(0, X, Q);
-			*D = pdf1->xfxQ(1, X, Q);
-			*U = pdf1->xfxQ(2, X, Q);
-			*S = pdf1->xfxQ(3, X, Q);
-			*C = pdf1->xfxQ(4, X, Q);
-			*DB = pdf1->xfxQ(-1, X, Q);
-			*UB = pdf1->xfxQ(-2, X, Q);
+			*G = pdf1->xfxQ(0, XX, Q);
+			*D = pdf1->xfxQ(1, XX, Q);
+			*U = pdf1->xfxQ(2, XX, Q);
+			*S = pdf1->xfxQ(3, XX, Q);
+			*C = pdf1->xfxQ(4, XX, Q);
+			*DB = pdf1->xfxQ(-1, XX, Q);
+			*UB = pdf1->xfxQ(-2, XX, Q);
 			*B = 0.0;
 
 			//*G	=xfxM(j,X,Q,0);
@@ -724,13 +731,13 @@ namespace INC{
 			//*UB =xfxM(j,X,Q,-2);
 			//*B	=0.0;//xfxM(j,X,Q,5);
 		} else if (j==2) {
-			*G = pdf2->xfxQ(0, X, Q);
-			*D = pdf2->xfxQ(1, X, Q);
-			*U = pdf2->xfxQ(2, X, Q);
-			*S = pdf2->xfxQ(3, X, Q);
-			*C = pdf2->xfxQ(4, X, Q);
-			*DB = pdf2->xfxQ(-1, X, Q);
-			*UB = pdf2->xfxQ(-2, X, Q);
+			*G = pdf2->xfxQ(0, XX, Q);
+			*D = pdf2->xfxQ(1, XX, Q);
+			*U = pdf2->xfxQ(2, XX, Q);
+			*S = pdf2->xfxQ(3, XX, Q);
+			*C = pdf2->xfxQ(4, XX, Q);
+			*DB = pdf2->xfxQ(-1, XX, Q);
+			*UB = pdf2->xfxQ(-2, XX, Q);
 			*B = 0.0;
 		} else {
 			std::cout << "Invalid j in method STRUCI!" << std::endl;
@@ -836,8 +843,10 @@ namespace INC{
 		double GL1,U1,UB1,D1,DB1,C1,S1,B1;
 		double GL2,U2,UB2,D2,DB2,C2,S2,B2;
 
+		//std::cout << "x10: " << x10 << std::endl;
 		STRUCI(x10 ,muIF2,1,10,&U10 ,&UB10 ,&D10 ,&DB10 ,&S10 ,&C10 ,&B10 ,&GL10);
 		//STRUCI(x1 ,muIF2,1,1,&U1 ,&UB1 ,&D1 ,&DB1 ,&S1 ,&C1 ,&B1 ,&GL1);
+		//std::cout << "x2: " << x2 << std::endl;
 		STRUCI(x2 ,muIF2,2,2,&U2 ,&UB2 ,&D2 ,&DB2 ,&S2 ,&C2 ,&B2 ,&GL2);
 
 		double SIGGQ,SIGQG,SIGQQB;
@@ -895,6 +904,7 @@ namespace INC{
 
 		FUNCHO1*=jac_v;
 
+		//std::cout << "x1: " << x1 << std::endl;
 		STRUCI(x1 ,muIF2,1,1,&U1 ,&UB1 ,&D1 ,&DB1 ,&S1 ,&C1 ,&B1 ,&GL1);
 
 		double GQQB=FQQB(&v,&w);
@@ -1097,7 +1107,10 @@ namespace INC{
 		double GL1,UP1,UPB1,DO1,DOB1,CH1,ST1,BO1;
 		double GL2,UP2,UPB2,DO2,DOB2,CH2,ST2,BO2;
 		double DPU,DPUB,DPD,DPDB,DPS,DPSB,DPC,DPCB,DPB,DPBB,DPG;
+		
+		//std::cout << "Bx1: " << Bx1 << std::endl;
 		STRUCI(Bx1 ,muIF2,1,1,&UP1 ,&UPB1 ,&DO1 ,&DOB1 ,&ST1 ,&CH1 ,&BO1 ,&GL1);
+		//std::cout << "Bx2: " << Bx2 << std::endl;
 		STRUCI(Bx2 ,muIF2,2,2,&UP2 ,&UPB2 ,&DO2 ,&DOB2 ,&ST2 ,&CH2 ,&BO2 ,&GL2);
 		STRUCF(x3 ,muFF2,&DPU,&DPUB,&DPD,&DPDB,&DPS,&DPSB,&DPC,&DPCB,&DPB,&DPBB,&DPG);
 		STRU(	&UP1,&UPB1,&DO1,&DOB1,&ST1,&CH1,&GL1,
@@ -1127,6 +1140,8 @@ namespace INC{
 	
 		double GPPT[16];
 		double GPPC[16];
+
+		//std::cout << "x1 (1134): " << x1 << std::endl;
 		STRUCI(x1 ,muIF2,1,1,&UP1 ,&UPB1 ,&DO1 ,&DOB1 ,&ST1 ,&CH1 ,&BO1 ,&GL1);
 		STRU(	&UP1,&UPB1,&DO1,&DOB1,&ST1,&CH1,&GL1,
 					&UP2,&UPB2,&DO2,&DOB2,&ST2,&CH2,&GL2,
